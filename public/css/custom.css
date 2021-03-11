@@ -1,0 +1,63 @@
+.card-footer{
+    padding: 2px 20px !important;
+    font-size: 12px;
+    background: #fff;
+}
+.nav-item a{
+    color: #fff !important;
+}
+.small{
+    font-size: 10px !important;
+}
+.big{
+    font-size: 50px !important;
+    font-weight: bold;
+    border-radius: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.admin-card{
+    width: 100%;
+    background: rgba(224, 218, 218, 0.397);
+    font-size: 16px !important;
+    border-radius: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.admin-card a{
+    display: block;
+    padding: 10px 0;
+    text-transform: uppercase;
+    color: #fff;
+}
+.admin-card a:hover{
+    text-decoration: none;
+    background: rgba(168, 165, 165, 0.397);
+}
+.box{
+    box-shadow: 5px 10px 20px rgba(0,0,0,0.15);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.box-header{
+    padding: 20px;
+    background: #eeecec;
+}
+.box-body{
+    padding:10px 20px;
+}
+.box-btn{
+    text-align: center;
+    width: 100%;
+    border: 1px solid #ebe8e8;
+    border-radius: 10px;
+}
+.box-btn a{
+    display: block;
+    padding: 10px 0;
+    color: #bebcbc;
+}
+.box-btn a:hover{
+    text-decoration: none;
+    color: #0275d8;
+}
