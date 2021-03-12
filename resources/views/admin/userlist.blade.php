@@ -12,8 +12,7 @@
     <div class="d-flex justify-content-between mb-3">
       <h2>UserList Dashboard</h2>
       <div>
-        <a href="#" class="btn btn-primary mr-3"><i class="fas fa-upload"></i> Import Users</a>
-        <a href="#" class="btn btn-primary mr-3"><i class="fas fa-download"></i> Download Users</a>
+        <a href="#" class="btn btn-primary mr-3" data-toggle="modal" data-target="#exampleModalCenter2"><i class="fas fa-download"></i> Download Users</a>
         <a href="{{ route('admin.home') }}" class="btn btn-secondary"><i class="fas fa-caret-left"></i> Back</a>
       </div>
     </div>
