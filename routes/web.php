@@ -25,6 +25,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('remove/{id}','AdminController@deleAccount')->name('deleAccount');
     Route::get('post-export-excel','FrontendController@exportIntoExcel')->name('post#excel');
     Route::get('post-export-csv','FrontendController@exportIntoCSV')->name('post#csv');
+    Route::get('user-export-excel','FrontendController@userExcel')->name('user#excel');
+    Route::get('user-export-csv','FrontendController@userCSV')->name('user#csv');
     Route::get('post-export-pdf','FrontendController@exportIntoPDF')->name('post#pdf');
     Route::post('post-import','FrontendController@import')->name('post#import');
 });
