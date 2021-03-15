@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 
 class AdminDao implements AdminDaoInterface {
@@ -41,7 +42,7 @@ class AdminDao implements AdminDaoInterface {
         $user->dob = $request->dob;
         if($request->has('profile')){
             $imageName = time().'.'.$request->profile->extension();
-            if($user->profile != 'user.png'){
+            if($user->profile != Config::get('constants.PROFILE_IMG')){
                 if(File::exists(public_path('img/'.$user->profile))){
                     File::delete(public_path('img/'.$user->profile));
                     $user->profile = $imageName;
@@ -63,7 +64,7 @@ class AdminDao implements AdminDaoInterface {
     public function deleUser($id)
     {
         $deleimg = User::find($id);
-        if($deleimg->profile != 'user.png')
+        if($deleimg->profile != Config::get('constants.PROFILE_IMG'))
         {
             if(File::exists(public_path('img/'.$deleimg->profile))){
                 File::delete(public_path('img/'.$deleimg->profile));

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Contracts\Services\Post\PostServiceInterface;
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
@@ -42,15 +43,9 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $this->validate($request,[
-            'title' => 'required | max:255',
-            'description' => 'required'
-        ]);
-
         $this->postInterface->storePost($request);
-
         Session::flash('message', 'Post was Successfully Created!');
         return redirect()->route('frontend.home');
     }
@@ -84,15 +79,9 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
-        $this->validate($request,[
-            'title' => 'required | max:255',
-            'description' => 'required'
-        ]);
-
         $this->postInterface->updatePost($request,$post);
-
         Session::flash('message', 'Post was Successfully Updated!');
         return redirect()->route('frontend.home');
     }
