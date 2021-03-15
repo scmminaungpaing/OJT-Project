@@ -27,11 +27,21 @@ class AdminDao implements AdminDaoInterface {
         return Role::all();
     }
 
+    /**
+     * Get Single Usr 
+     * @param integer $id
+     * @return array
+     */
     public function getUser($id)
     {
         return User::where('id',$id)->get();
     }
 
+    /**
+     * Update user data
+     * @param integer $id
+     * @param Request $request
+     */
     public function updateUser($request, $id)
     {
         $user = User::find($id);
@@ -61,6 +71,10 @@ class AdminDao implements AdminDaoInterface {
         $user->save();
     }
 
+    /**
+     * Delete User By Admin
+     * @param integer $id
+     */
     public function deleUser($id)
     {
         $deleimg = User::find($id);
@@ -76,6 +90,10 @@ class AdminDao implements AdminDaoInterface {
         }
     }
 
+    /**
+     * Publish/UnPublish post by Admin
+     * @param integer $id
+     */
     public function publishPost($id)
     {
         $post = Post::FindOrFail($id);
@@ -88,6 +106,10 @@ class AdminDao implements AdminDaoInterface {
         $post->save();
     }
 
+    /**
+     * Removed Account by user
+     * @param integer $id
+     */
     public function removeAcc($id)
     {
         $user = User::FindOrFail($id);
