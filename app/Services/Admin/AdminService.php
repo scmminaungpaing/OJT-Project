@@ -125,7 +125,7 @@ class AdminService implements AdminServiceInterface {
     {
         // get post data with id
         $post = $this->adminDao->getPostById($id);
-        // for publish feacture
+        // for publish feature
         if($post->publish == true){
             $post->publish = false;
             return $this->adminDao->publishPost($post);
