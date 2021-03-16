@@ -6,9 +6,7 @@ use App\Contracts\Dao\Admin\AdminDaoInterface;
 use App\Models\Post;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\File;
 
 class AdminDao implements AdminDaoInterface {
 

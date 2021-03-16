@@ -5,6 +5,7 @@ namespace App\Dao\Post;
 use App\Contracts\Dao\Post\PostDaoInterface;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Facades\Config;
 
 class PostDao implements PostDaoInterface{
 
@@ -65,7 +66,7 @@ class PostDao implements PostDaoInterface{
      * @return array
      */
     public function getPost(){
-        return Post::orderBy('created_at', 'DESC')->where('publish', true)->paginate(5);
+        return Post::orderBy('created_at', 'DESC')->where('publish', true)->paginate(Config::get("constants.PAGINATE_NUM"));
     }
 
     /** 
