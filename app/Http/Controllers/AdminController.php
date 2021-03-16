@@ -24,7 +24,7 @@ class AdminController extends Controller
         $post = $this->adminInterface->getTotalPost();
         $role = $this->adminInterface->getTotalRole();
         $user = $this->adminInterface->getTotalUser();
-        return view('admin.home',['users'=> $user,'posts'=> $post ,'roles' => $role]);
+        return view('admin.home', ['users'=> $user, 'posts'=> $post , 'roles' => $role]);
     }
 
     /**
@@ -33,7 +33,7 @@ class AdminController extends Controller
     */
     public function postList(){
         $post = $this->adminInterface->getTotalPost();
-        return view('admin.postlist',['posts'=> $post]);
+        return view('admin.postlist', ['posts'=> $post]);
     }
 
     /**
@@ -42,7 +42,7 @@ class AdminController extends Controller
     */
     public function userList(){
         $user = $this->adminInterface->getTotalUser();
-        return view('admin.userlist',['users'=> $user]);
+        return view('admin.userlist', ['users'=> $user]);
     }
 
     /**
@@ -51,7 +51,7 @@ class AdminController extends Controller
     */
     public function roleList(){
         $role = $this->adminInterface->getTotalRole();
-        return view('admin.rolelist',['roles'=> $role]);
+        return view('admin.rolelist', ['roles'=> $role]);
     }
 
     /**
@@ -61,7 +61,7 @@ class AdminController extends Controller
     */
     public function editProfile($id){
         $dataList = $this->adminInterface->getUser($id);
-        return view('editprofile',['data' => $dataList]);
+        return view('editprofile', ['data' => $dataList]);
     }
 
     /**
@@ -70,7 +70,7 @@ class AdminController extends Controller
     * @param    Integer     $id
     * @return     Response
     */
-    public function updateProfile(UserProfileRequest $request,$id){
+    public function updateProfile(UserProfileRequest $request, $id){
         $this->adminInterface->updateUser($request,$id);
         Session::flash('message', 'Profile was Successfully Updated!');
         return redirect()->route('home');

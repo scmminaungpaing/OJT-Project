@@ -30,7 +30,7 @@ interface AdminServiceInterface
      * @param integer $id
      * @param Request $request
      */
-    public function updateUser($request,$id);
+    public function updateUser($request, $id);
 
     /**
      * Delete user by Admin

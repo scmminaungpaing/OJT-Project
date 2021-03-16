@@ -65,7 +65,7 @@ class PostService implements PostServiceInterface{
     }
 
     /** 
-     * Get all Post User data
+     * Get all Post User 
      * @param integer $id
      * @return array
      */
@@ -82,4 +82,3 @@ class PostService implements PostServiceInterface{
         return $this->postDao->getPostUserProfile($id);
     }
 }
- 
