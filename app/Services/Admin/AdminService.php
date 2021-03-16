@@ -100,7 +100,7 @@ class AdminService implements AdminServiceInterface {
     {
         // find user data with id
         $user = $this->adminDao->getUserById($id);
-        // check user profile img is user.png or not and save that
+        // check user profile img is user.png or not and delete that
         if($user->profile != Config::get('constants.PROFILE_IMG'))
         {
             if(File::exists(public_path('img/' . $user->profile))){
