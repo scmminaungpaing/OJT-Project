@@ -12,7 +12,7 @@
                     <a href="{{route('post#profile',[$post->user_id])}}"><img src="{{asset("img/".$post->user->profile)}}" alt="profile" class="rounded-circle mr-2" width="50px"> {{$post->user->name}}</a><small class="text-muted ml-3"><i class="fas fa-clock"></i> {{ $post->created_at->diffForHumans() }}</small>
                 </div>
                 <div>
-                    <a href="{{route('frontend.home')}}" class="btn btn-primary btn-sm py-2 px-3 "><i class="fas fa-backward"></i></a>
+                    <a href="{{route('frontend#home')}}" class="btn btn-primary btn-sm py-2 px-3 "><i class="fas fa-backward"></i></a>
                 </div>
             </div>
             <div class="box-body">

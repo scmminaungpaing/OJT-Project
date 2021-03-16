@@ -105,6 +105,6 @@ class AdminController extends Controller
     public function deleAccount($id){
         $this->adminInterface->removeAcc($id);
         Session::flash('message', 'Your Account had been Deleted!');
-        return redirect()->route('frontend.home');
+        return redirect()->route('frontend#home');
     }
 }

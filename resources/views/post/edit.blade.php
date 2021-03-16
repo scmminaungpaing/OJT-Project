@@ -13,7 +13,7 @@ Post Create |
     @endif
   <div class="d-flex justify-content-between mb-4">
     <h3>Edit Post</h3>
-    <a href="{{route('frontend.home')}}" class="btn btn-info btn-sm py-2 px-3"><i class="fas fa-caret-left"></i> Back</a>
+    <a href="{{route('frontend#home')}}" class="btn btn-info btn-sm py-2 px-3"><i class="fas fa-caret-left"></i> Back</a>
   </div>
   <form action="{{route('post.update',[$post->id])}}" enctype="multipart/form-data" method="POST">
     @csrf

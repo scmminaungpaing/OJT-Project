@@ -19,6 +19,5 @@ class AdminAccess
         if(auth()->user()->role->id == 1){
             return $next($request);
         }
-        // return redirect()->route('login')->with('message','Email or Password are incorrect.');
     }
 }

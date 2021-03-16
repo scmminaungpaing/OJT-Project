@@ -13,7 +13,7 @@
       <h2>UserList Dashboard</h2>
       <div>
         <a href="#" class="btn btn-primary mr-3" data-toggle="modal" data-target="#exampleModalCenter2"><i class="fas fa-download"></i> Download Users</a>
-        <a href="{{ route('admin.home') }}" class="btn btn-secondary"><i class="fas fa-caret-left"></i> Back</a>
+        <a href="{{ route('admin#home') }}" class="btn btn-secondary"><i class="fas fa-caret-left"></i> Back</a>
       </div>
     </div>
       <strong>Total Users : {{ count($users) }}</strong>

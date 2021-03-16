@@ -19,7 +19,7 @@
       <div>
         <a href="#" class="btn btn-primary mr-3" data-toggle="modal" data-target="#exampleModalCenter1"><i class="fas fa-upload"></i> Import Posts</a>
         <a href="#" class="btn btn-primary mr-3" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-download"></i> Download Posts</a>
-        <a href="{{ route('admin.home') }}" class="btn btn-secondary"><i class="fas fa-caret-left"></i> Back</a>
+        <a href="{{ route('admin#home') }}" class="btn btn-secondary"><i class="fas fa-caret-left"></i> Back</a>
       </div>
     </div>
       <strong>Total Post : {{ count($posts) }}</strong>

@@ -47,7 +47,7 @@ class PostController extends Controller
     {
         $this->postInterface->storePost($request);
         Session::flash('message', 'Post was Successfully Created!');
-        return redirect()->route('frontend.home');
+        return redirect()->route('frontend#home');
     }
 
     /**
@@ -83,7 +83,7 @@ class PostController extends Controller
     {
         $this->postInterface->updatePost($request,$post);
         Session::flash('message', 'Post was Successfully Updated!');
-        return redirect()->route('frontend.home');
+        return redirect()->route('frontend#home');
     }
 
     /**
@@ -96,6 +96,6 @@ class PostController extends Controller
     {
         $this->postInterface->destroyPost($post);
         Session::flash('message','Post Deleted successfully!');
-        return redirect()->route('frontend.home');
+        return redirect()->route('frontend#home');
     }
 }

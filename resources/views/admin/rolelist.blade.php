@@ -9,7 +9,7 @@
     <div class="d-flex justify-content-between mb-3">
         <h2>PostList Dashboard</h2>
         <div>
-            <a href="{{route('admin.home')}}" class="btn btn-secondary"><i class="fas fa-caret-left"></i>  Back</a>
+            <a href="{{route('admin#home')}}" class="btn btn-secondary"><i class="fas fa-caret-left"></i>  Back</a>
         </div>
     </div>
       <strong>Total Role : {{count($roles)}}</strong>

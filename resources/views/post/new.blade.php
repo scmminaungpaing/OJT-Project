@@ -13,7 +13,7 @@ Post Create |
     @endif
   <div class="d-flex justify-content-between mb-4">
     <h3>Create New Post</h3>
-    <a href="{{route('frontend.home')}}" class="btn btn-secondary btn-sm py-2 px-3"><i class="fas fa-caret-left"></i> Back</a>
+    <a href="{{route('frontend#home')}}" class="btn btn-secondary btn-sm py-2 px-3"><i class="fas fa-caret-left"></i> Back</a>
   </div>
   <form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
