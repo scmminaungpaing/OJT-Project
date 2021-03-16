@@ -3,6 +3,9 @@ namespace App\Services\Admin;
 
 use App\Contracts\Dao\Admin\AdminDaoInterface;
 use App\Contracts\Services\Admin\AdminServiceInterface;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
 
 class AdminService implements AdminServiceInterface {
 
@@ -58,7 +61,31 @@ class AdminService implements AdminServiceInterface {
      */
     public function updateUser($request, $id)
     {
-        return $this->adminDao->updateUser($request,$id);
+        $user = $this->adminDao->getUserById($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->dob = $request->dob;
+        if($request->has('profile')){
+            $imageName = time(). '.' .$request->profile->extension();
+            if($user->profile != Config::get('constants.PROFILE_IMG')){
+                if(File::exists(public_path('img/' . $user->profile))){
+                    File::delete(public_path('img/' . $user->profile));
+                    $user->profile = $imageName;
+                    $request->profile->move(public_path('img'), $imageName);
+                }
+                else{
+                    $user->profile = $imageName;
+                    $request->profile->move(public_path('img'), $imageName);
+                }
+            }
+            else{
+                $user->profile = $imageName;
+                $request->profile->move(public_path('img'), $imageName);
+            }
+        }
+        return $this->adminDao->updateUser($user);
     }
 
      /**
@@ -69,7 +96,20 @@ class AdminService implements AdminServiceInterface {
      */
     public function deleUser($id)
     {
-        return $this->adminDao->deleUser($id);
+        $user = $this->adminDao->getUserById($id);
+        if($user->profile != Config::get('constants.PROFILE_IMG'))
+        {
+            if(File::exists(public_path('img/' . $user->profile))){
+                File::delete(public_path('img/' . $user->profile));
+                return $this->adminDao->deleUser($user);
+            }
+            else{
+                return $this->adminDao->deleUser($user);
+            }
+        }
+        else{
+           return $this->adminDao->deleUser($user);
+        }
     }
 
     /**
@@ -79,7 +119,15 @@ class AdminService implements AdminServiceInterface {
      */
     public function publishPost($id)
     {
-        return $this->adminDao->publishPost($id);
+        $post = $this->adminDao->getPostById($id);
+        if($post->publish == true){
+            $post->publish = false;
+            return $this->adminDao->publishPost($post);
+        }
+        else{
+            $post->publish = true;
+            return $this->adminDao->publishPost($post);
+        }
     }
 
     /**
@@ -88,6 +136,11 @@ class AdminService implements AdminServiceInterface {
      */
     public function removeAcc($id)
     {
-        return $this->adminDao->removeAcc($id);
+        $user = $this->adminDao->getUserById($id);
+        if($user){
+            Auth::logout();
+            return $this->adminDao->removeAcc($user);
+        }
+       
     }
 }

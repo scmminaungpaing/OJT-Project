@@ -12,29 +12,59 @@ use Illuminate\Support\Facades\File;
 
 class AdminDao implements AdminDaoInterface {
 
+    /**
+     * Get all Users
+     * @return array
+     */
     public function getTotalUser()
     {
-        return User::paginate(10);
+        return User::paginate(Config::get("constants.PAGINATE_NUM"));
     }
 
+    /**
+     * Get all Posts
+     * @return array
+     */
     public function getTotalPost()
     {
-        return Post::paginate(10);
+        return Post::paginate(Config::get("constants.PAGINATE_NUM"));
     }
 
+    /**
+     * Get all Roles
+     * @return array
+     */
     public function getTotalRole()
     {
         return Role::all();
     }
 
     /**
-     * Get Single Usr 
+     * Get Single User 
      * @param integer $id
      * @return array
      */
     public function getUser($id)
     {
-        return User::where('id',$id)->get();
+        return User::where('id', $id)->get();
+    }
+
+    /**
+     * Get Single User by ID
+     * @param integer $id
+     * @return array
+     */
+    public function getUserById($id){
+        return User::find($id);
+    }
+
+    /**
+     * Get Single Post by ID
+     * @param integer $id
+     * @return array
+     */
+    public function getPostById($id){
+        return Post::find($id);
     }
 
     /**
@@ -42,67 +72,26 @@ class AdminDao implements AdminDaoInterface {
      * @param integer $id
      * @param Request $request
      */
-    public function updateUser($request, $id)
+    public function updateUser($user)
     {
-        $user = User::find($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->address = $request->address;
-        $user->dob = $request->dob;
-        if($request->has('profile')){
-            $imageName = time().'.'.$request->profile->extension();
-            if($user->profile != Config::get('constants.PROFILE_IMG')){
-                if(File::exists(public_path('img/'.$user->profile))){
-                    File::delete(public_path('img/'.$user->profile));
-                    $user->profile = $imageName;
-                    $request->profile->move(public_path('img'), $imageName);
-                }
-                else{
-                    $user->profile = $imageName;
-                    $request->profile->move(public_path('img'), $imageName);
-                }
-            }
-            else{
-                $user->profile = $imageName;
-                $request->profile->move(public_path('img'), $imageName);
-            }
-        }
         $user->save();
     }
 
     /**
      * Delete User By Admin
-     * @param integer $id
+     * @param object $user
      */
-    public function deleUser($id)
+    public function deleUser($user)
     {
-        $deleimg = User::find($id);
-        if($deleimg->profile != Config::get('constants.PROFILE_IMG'))
-        {
-            if(File::exists(public_path('img/'.$deleimg->profile))){
-                File::delete(public_path('img/'.$deleimg->profile));
-                $deleimg->delete();
-            }
-        }
-        else{
-            $deleimg->delete();
-        }
+        $user->delete();
     }
 
     /**
      * Publish/UnPublish post by Admin
-     * @param integer $id
+     * @param object $post
      */
-    public function publishPost($id)
+    public function publishPost($post)
     {
-        $post = Post::FindOrFail($id);
-        if($post->publish == true){
-            $post->publish = false;
-        }
-        else{
-            $post->publish = true;
-        }
         $post->save();
     }
 
@@ -110,12 +99,8 @@ class AdminDao implements AdminDaoInterface {
      * Removed Account by user
      * @param integer $id
      */
-    public function removeAcc($id)
+    public function removeAcc($user)
     {
-        $user = User::FindOrFail($id);
-        if($user){
-            Auth::logout();
-            $user->delete();
-        }
+        $user->delete();
     }
 }
