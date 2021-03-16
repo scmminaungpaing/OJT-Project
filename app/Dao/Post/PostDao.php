@@ -32,7 +32,7 @@ class PostDao implements PostDaoInterface{
      * @return array
      */
     public function updatePost($request,$post){
-        $publish =$request->has('publish') ? true : false;
+        $publish = $request->has('publish') ? true : false;
         $post->title = $request->title;
         $post->description = $request->description;
         $post->publish = $publish;
@@ -56,7 +56,7 @@ class PostDao implements PostDaoInterface{
     public function searchData($request)
     {
         $q = $request->search;
-        return Post::where('title','LIKE','%'. $q .'%')->orWhere('description','LIKE','%'. $q .'%')->paginate(3);
+        return Post::where('title', 'LIKE', '%'. $q . '%')->orWhere('description', 'LIKE','%'. $q . '%')->paginate(3);
     }
 
     /** 

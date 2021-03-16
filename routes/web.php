@@ -4,14 +4,14 @@ use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
-Route::get('/','FrontendController@index')->name('frontend.home');
+Route::get('/','FrontendController@index')->name('frontend#home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile/{id}','FrontendController@profile')->name('post#profile');
-Route::get('admin/home', 'AdminController@index')->name('admin.home')->middleware('AdminAccess');
+Route::get('admin/home', 'AdminController@index')->name('admin#home')->middleware('AdminAccess');
 Route::get('/admin/postlist','AdminController@postList')->name('admin#postlist');
 Route::get('/admin/userlist','AdminController@userList')->name('admin#userlist');
 Route::get('/admin/rolelist','AdminController@roleList')->name('admin#rolelist');
-Route::get('/search','FrontendController@search')->name('frontend.search');
+Route::get('/search','FrontendController@search')->name('frontend#search');
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('post', 'PostController');
     Route::patch('/publish/{id}','AdminController@publish')->name('publish');

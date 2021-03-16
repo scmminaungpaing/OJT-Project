@@ -6,7 +6,7 @@
           <p class="alert alert-success">{{ Session::get('message') }}</p>
       @endif
       <div class="d-flex justify-content-between mb-3">
-          <form action="{{ route('frontend.search') }}" method="GET" class="d-flex w-100">
+          <form action="{{ route('frontend#search') }}" method="GET" class="d-flex w-100">
               @csrf
               <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search Post Here..."
                   aria-label="Search">

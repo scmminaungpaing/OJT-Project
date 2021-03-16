@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 5px 10px 30px rgba(0,0,0,0.1);">
   <div class="container">
-      <h5><a class="navbar-brand" href="{{ route('frontend.home') }}"><i class="fas fa-home"></i> HOME</a></h5>
+      <h5><a class="navbar-brand" href="{{ route('frontend#home') }}"><i class="fas fa-home"></i> HOME</a></h5>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,7 @@
                 @csrf
             </form>
           @else
-              <a href="{{route('admin.home')}}" class="nav-link mr-1"><b><i class="fas fa-user"></i> {{ Str::ucfirst(Auth::user()->name) }}</b></a>
+              <a href="{{route('admin#home')}}" class="nav-link mr-1"><b><i class="fas fa-user"></i> {{ Str::ucfirst(Auth::user()->name) }}</b></a>
 
               <a href="{{ route('logout') }}" class="nav-link btn btn-primary text-white"
               onclick="event.preventDefault();

@@ -27,7 +27,7 @@ class FrontendController extends Controller
      */
     public function index(){
         $posts = $this->postInterface->getPost();
-        return view('index',compact('posts'));
+        return view('index', compact('posts'));
     }
 
     /**
@@ -37,7 +37,7 @@ class FrontendController extends Controller
      */
     public function search(Request $request){
         $posts = $this->postInterface->searchData($request);
-        return view('post.search',['posts' => $posts]);
+        return view('post.search', ['posts' => $posts]);
     }
 
     /**
@@ -49,7 +49,7 @@ class FrontendController extends Controller
     public function profile($id){
         $user = $this->postInterface->getPostUserProfile($id);
         $posts = $this->postInterface->getPostUser($id);
-        return view('post.profile',['posts' => $posts,'user' => $user]);
+        return view('post.profile', ['posts' => $posts, 'user' => $user]);
     }
 
     /**
@@ -57,7 +57,7 @@ class FrontendController extends Controller
     * @return     Response
     */
     public function exportIntoExcel(){
-        return Excel::download(new PostsExport,'posts.xlsx');
+        return Excel::download(new PostsExport, 'posts.xlsx');
     }
 
     /**
@@ -65,7 +65,7 @@ class FrontendController extends Controller
     * @return     Response
     */
     public function exportIntoCSV(){
-        return Excel::download(new PostsExport,'posts.csv');
+        return Excel::download(new PostsExport, 'posts.csv');
     }
 
     /**
@@ -73,7 +73,7 @@ class FrontendController extends Controller
     * @return     Response
     */
     public function userExcel(){
-        return Excel::download(new UserExport,'users.xlsx');
+        return Excel::download(new UserExport, 'users.xlsx');
     }
 
     /**
@@ -81,7 +81,7 @@ class FrontendController extends Controller
     * @return     Response
     */
     public function userCSV(){
-        return Excel::download(new UserExport,'users.csv');
+        return Excel::download(new UserExport, 'users.csv');
     }
 
     /**
@@ -90,10 +90,10 @@ class FrontendController extends Controller
     * @return   Response
     */
     public function import(Request $request){
-        $this->validate($request,[
+        $this->validate($request, [
             'file' => 'required|mimes:xls,xlsx,csv,pdf'
         ]);
-        Excel::import(new PostImport,$request->file);
+        Excel::import(new PostImport, $request->file);
         Session::flash('message', 'Post are successfully imported!');
         return redirect()->route('admin#postlist');
     }
