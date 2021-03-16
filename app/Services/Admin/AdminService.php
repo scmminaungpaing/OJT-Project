@@ -68,7 +68,7 @@ class AdminService implements AdminServiceInterface {
         $user->phone = $request->phone;
         $user->address = $request->address;
         $user->dob = $request->dob;
-        // check request value or not!
+        // check request value or not and save in path!
         if($request->has('profile')){
             $imageName = time(). '.' .$request->profile->extension();
             if($user->profile != Config::get('constants.PROFILE_IMG')){
