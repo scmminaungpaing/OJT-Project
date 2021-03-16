@@ -61,12 +61,14 @@ class AdminService implements AdminServiceInterface {
      */
     public function updateUser($request, $id)
     {
+        // find user data with id
         $user = $this->adminDao->getUserById($id);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->address = $request->address;
         $user->dob = $request->dob;
+        // check request value or not!
         if($request->has('profile')){
             $imageName = time(). '.' .$request->profile->extension();
             if($user->profile != Config::get('constants.PROFILE_IMG')){
@@ -96,7 +98,9 @@ class AdminService implements AdminServiceInterface {
      */
     public function deleUser($id)
     {
+        // find user data with id
         $user = $this->adminDao->getUserById($id);
+        // check user profile img is user.png or not and save that
         if($user->profile != Config::get('constants.PROFILE_IMG'))
         {
             if(File::exists(public_path('img/' . $user->profile))){
@@ -119,7 +123,9 @@ class AdminService implements AdminServiceInterface {
      */
     public function publishPost($id)
     {
+        // get post data with id
         $post = $this->adminDao->getPostById($id);
+        // for publish feacture
         if($post->publish == true){
             $post->publish = false;
             return $this->adminDao->publishPost($post);
@@ -136,7 +142,9 @@ class AdminService implements AdminServiceInterface {
      */
     public function removeAcc($id)
     {
+        // get user data with id
         $user = $this->adminDao->getUserById($id);
+        // logout and delete account
         if($user){
             Auth::logout();
             return $this->adminDao->removeAcc($user);
