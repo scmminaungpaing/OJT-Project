@@ -55,7 +55,7 @@ class PostDao implements PostDaoInterface{
     public function searchData($request)
     {
         $q = $request->search;
-        return Post::where('title','LIKE','%'.$q.'%')->orWhere('description','LIKE','%'.$q.'%')->paginate(3);
+        return Post::where('title','LIKE','%'. $q .'%')->orWhere('description','LIKE','%'. $q .'%')->paginate(3);
     }
 
     /** 
@@ -65,7 +65,7 @@ class PostDao implements PostDaoInterface{
      * @return array
      */
     public function getPost(){
-        return Post::orderBy('created_at','DESC')->where('publish',true)->paginate(5);
+        return Post::orderBy('created_at', 'DESC')->where('publish', true)->paginate(5);
     }
 
     /** 
@@ -75,7 +75,7 @@ class PostDao implements PostDaoInterface{
      */
     public function getPostUser($id)
     {
-        return Post::orderBy('created_at','DESC')->where('user_id',$id)->get();
+        return Post::orderBy('created_at', 'DESC')->where('user_id', $id)->get();
     }
 
     /** 
@@ -85,6 +85,6 @@ class PostDao implements PostDaoInterface{
      */
     public function getPostUserProfile($id)
     {
-        return User::where('id',$id)->get();
+        return User::where('id', $id)->get();
     }
 }
