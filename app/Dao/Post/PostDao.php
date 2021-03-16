@@ -45,6 +45,7 @@ class PostDao implements PostDaoInterface{
      */
     public function destroyPost($post)
     {
+        // delete post
         $post->delete();
     }
 
@@ -55,6 +56,7 @@ class PostDao implements PostDaoInterface{
      */
     public function searchData($request)
     {
+        // search post with request
         $q = $request->search;
         return Post::where('title', 'LIKE', '%'. $q . '%')->orWhere('description', 'LIKE','%'. $q . '%')->paginate(3);
     }
@@ -76,6 +78,7 @@ class PostDao implements PostDaoInterface{
      */
     public function getPostUser($id)
     {
+        // get all posts of user with id
         return Post::orderBy('created_at', 'DESC')->where('user_id', $id)->get();
     }
 
@@ -86,6 +89,7 @@ class PostDao implements PostDaoInterface{
      */
     public function getPostUserProfile($id)
     {
+        // get user from post->id
         return User::where('id', $id)->get();
     }
 }
