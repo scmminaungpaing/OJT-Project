@@ -17,6 +17,14 @@ class AdminService implements AdminServiceInterface {
     }
 
     /**
+     * Get User by email
+     * @param string @email
+     */
+    public function getUserByEmail($email){
+        return $this->adminDao->getUserByEmail($email);
+    }
+
+    /**
      * Get all Users
      * @return array
      */

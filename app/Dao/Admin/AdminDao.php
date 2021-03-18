@@ -20,6 +20,15 @@ class AdminDao implements AdminDaoInterface {
     }
 
     /**
+     * Get all Users
+     * @return array
+     */
+    public function getUserByEmail($email)
+    {
+        return User::where('email',$email)->first();
+    }
+
+    /**
      * Get all Posts
      * @return array
      */

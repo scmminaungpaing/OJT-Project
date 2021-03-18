@@ -68,7 +68,7 @@ class PostDao implements PostDaoInterface{
      * @return array
      */
     public function getPost(){
-        return Post::orderBy('created_at', 'DESC')->where('publish', true)->paginate(Config::get("constants.PAGINATE_NUM"));
+        return Post::with('user')->orderBy('created_at', 'DESC')->where('publish', true)->paginate(Config::get("constants.PAGINATE_NUM"));
     }
 
     /** 

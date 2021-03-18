@@ -10,6 +10,12 @@ interface AdminDaoInterface {
     public function getTotalUser();
 
     /**
+     * Get User by email
+     * @param string @email
+     */
+    public function getUserByEmail($email);
+
+    /**
      * Get all Posts
      */
     public function getTotalPost();
