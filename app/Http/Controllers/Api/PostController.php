@@ -48,8 +48,7 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         $this->postInterface->storePost($request);
-        Session::flash('message', 'Post was Successfully Created!');
-        return redirect()->route('frontend#home');
+        return response()->json('Post Create Successfully',200);
     }
 
     /**
@@ -71,7 +70,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('post.edit',['post' => $post]);
+        return response()->json($post, 200);
     }
 
     /**
@@ -84,8 +83,7 @@ class PostController extends Controller
     public function update(StorePostRequest $request, Post $post)
     {
         $this->postInterface->updatePost($request,$post);
-        Session::flash('message', 'Post was Successfully Updated!');
-        return redirect()->route('frontend#home');
+        return response()->json('Post Update Successfully',200);
     }
 
     /**
@@ -97,7 +95,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $this->postInterface->destroyPost($post);
-        Session::flash('message','Post Deleted successfully!');
-        return redirect()->route('frontend#home');
+        return response()->json("Post had been Deleted!",200);
     }
 }
