@@ -21,4 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login','Api\AuthController@login');
 Route::post('/register','Api\AuthController@register');
 Route::post('/logout','Api\AuthController@logout')->middleware('auth:sanctum');
-Route::get('/post','Api\PostController@index');
+Route::apiResource('post', 'Api\PostController', ['only' => [
+    'index', 'show'
+]]);
+Route::group(['middleware' => ['auth:sanctum']],function () {
+    Route::apiResource('post', 'Api\PostController', ['only' => [
+        'store', 'edit','update','destroy'
+    ]]);
+    Route::put('users/{id}','Api\AuthController@editUser');
+});

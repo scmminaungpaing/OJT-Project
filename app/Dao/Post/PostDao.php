@@ -58,7 +58,7 @@ class PostDao implements PostDaoInterface{
     {
         // search post with request
         $q = $request->search;
-        return Post::where('title', 'LIKE', '%'. $q . '%')->orWhere('description', 'LIKE','%'. $q . '%')->paginate(3);
+        return Post::where('title', 'LIKE', '%'. $q . '%')->orWhere('description', 'LIKE','%'. $q . '%')->paginate(Config::get("constants.PAGINATE_NUM"));
     }
 
     /** 
