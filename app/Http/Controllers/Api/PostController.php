@@ -97,4 +97,9 @@ class PostController extends Controller
         $this->postInterface->destroyPost($post);
         return response()->json("Post had been Deleted!",200);
     }
+
+    public function getPostUser($id){
+        $post =  $this->postInterface->getPostUser($id);
+        return response()->json($post,200);
+    }
 }

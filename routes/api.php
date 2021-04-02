@@ -24,6 +24,7 @@ Route::post('/logout','Api\AuthController@logout')->middleware('auth:sanctum');
 Route::apiResource('post', 'Api\PostController', ['only' => [
     'index', 'show'
 ]]);
+Route::get('/userpost/{id}','Api\PostController@getPostUser');
 Route::group(['middleware' => ['auth:sanctum']],function () {
     Route::apiResource('post', 'Api\PostController', ['only' => [
         'store', 'edit','update','destroy'

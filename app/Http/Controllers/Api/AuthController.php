@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Contracts\Services\Admin\AdminServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -59,23 +60,14 @@ class AuthController extends Controller
     public function editUser(Request $request,$id){
         $this->validate($request,[
             'name'      => 'required | max:255',
-            'email'     => 'required',
-            'profile'   => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120'
+            'email'     => 'required'
         ]);
-        // $user = $this->authInterface->getUser($id);
-        // $user->name     = $request->name;
-        // $user->email    = $request->email;
-        // if($request->profile){
-        //     if( $request->profile != Config::get('constants.')){
-        //         $user->profile  = $request->profile;
-        //     }
-        //     else{
-        //         $user->profile  = Config::get('constants.');
-        //     }
-        // }
-        // $user->phone    = $request->phone;
-        // $user->dob      = $request->dob;
-        // $user->address  = $request->address;
-        return  response()->json($request);
+        $user = $this->authInterface->getUser($id);
+        $user->name     = $request->name;
+        $user->email    = $request->email;
+        $user->phone    = $request->phone;
+        $user->dob      = $request->dob;
+        $user->address  = $request->address;
+        $user->save();
     }
 }
